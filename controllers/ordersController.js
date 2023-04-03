@@ -51,8 +51,11 @@ export const openStripeCheckoutPage = async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       line_items, // los productos que el cliente ha elegido. El array tendrá tantos objetos como productos se hayan elegido
       mode: 'payment',
-      success_url: `http://localhost:5173/cart?success=true`, // a donde elegimos si la compra ha ido bien
-      cancel_url: `http://localhost:5173/cart?success=false`, // qué ocurre si algo va mal o el cliente cancela la compra
+      /**
+       * sustituimos `http://localhost:5173/cart?success=true` y `http://localhost:5173/cart?success=false` por las siguientes direcciones
+       */
+      success_url: `https://e-store-fullstack-app-y3j0.onrender.com/#/cart?success=true`, // a donde elegimos si la compra ha ido bien
+      cancel_url: `https://e-store-fullstack-app-y3j0.onrender.com/#/cart?success=false`, // qué ocurre si algo va mal o el cliente cancela la compra
       // añadimos '?success=true' para ver si todo fue bien o no
     });
 
